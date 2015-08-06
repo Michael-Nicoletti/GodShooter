@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour {
     
     //Movement speed setters
     [SerializeField] int moveSpeed = 20;
+    [SerializeField] int maxXVelocity = 100;
     [SerializeField] float jumpSpeed;
 
     //Player input values
@@ -30,7 +31,7 @@ public class playerMovement : MonoBehaviour {
         {
             playerInput = Input.GetAxisRaw("Horizontal");
 
-            if(rb.velocity.x < 100)
+            if(rb.velocity.x < maxXVelocity)
             {
                 rb.AddForce(Vector2.right * moveSpeed * playerInput);
             }
@@ -47,7 +48,10 @@ public class playerMovement : MonoBehaviour {
         {
             playerInput = Input.GetAxisRaw("Horizontal2");
 
-            rb.AddForce(Vector2.right * moveSpeed * playerInput);
+            if (rb.velocity.x < maxXVelocity)
+            {
+                rb.AddForce(Vector2.right * moveSpeed * playerInput);
+            }
 
             if (Input.GetKeyDown(KeyCode.UpArrow) && canJump == true)
             {
