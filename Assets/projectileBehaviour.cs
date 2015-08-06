@@ -8,19 +8,22 @@ public class projectileBehaviour : MonoBehaviour {
     [SerializeField] int bulletSpeed = 10;
 
 	// Use this for initialization
-	void Start () {
+    void Start()
+    {
 
         Destroy(gameObject, 3);
 
         rb = GetComponent<Rigidbody2D>();
 
+        rb.AddForce(transform.right * bulletSpeed * 100);
 
-        rb.AddForce(transform.right * bulletSpeed);
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Player")
+        {
+            Debug.Log(col.gameObject.name + " Lost A Life");
+        }
+    }
 }
