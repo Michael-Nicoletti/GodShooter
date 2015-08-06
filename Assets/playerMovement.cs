@@ -64,7 +64,7 @@ public class playerMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "ground")
+        if(col.gameObject.tag != "Wall")
         {
             canJump = true;
         }
