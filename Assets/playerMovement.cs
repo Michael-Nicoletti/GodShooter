@@ -30,7 +30,11 @@ public class playerMovement : MonoBehaviour {
         {
             playerInput = Input.GetAxisRaw("Horizontal");
 
-            rb.AddForce(Vector2.right * moveSpeed * playerInput);
+            if(rb.velocity.x < 100)
+            {
+                rb.AddForce(Vector2.right * moveSpeed * playerInput);
+            }
+           
 
             if (Input.GetKeyDown(KeyCode.W) && canJump == true)
             {
