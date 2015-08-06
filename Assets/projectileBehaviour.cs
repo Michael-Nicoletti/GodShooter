@@ -10,6 +10,7 @@ public class projectileBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        Destroy(gameObject, 3);
 
         rb = GetComponent<Rigidbody2D>();
 
