@@ -25,13 +25,10 @@ public class cameraZoom : MonoBehaviour {
         xAverage = (player1.transform.position.x + player2.transform.position.x) /2;
         yAverage = (player1.transform.position.y + player2.transform.position.y) /2;
 
-        //if(Vector3.Distance(player1.transform.position, player2.transform.position) < 100)
-        //{
             //Debug.Log(Vector3.Distance(player1.transform.position, player2.transform.position));
             if (Camera.main.orthographicSize >= (Vector3.Distance(player1.transform.position, player2.transform.position) / 2) && Camera.main.orthographicSize > 10
                 && Vector3.Distance(player1.transform.position, player2.transform.position) < prevDistance)
             {
-                Debug.Log("THIS HAS RUN");
                 Camera.main.orthographicSize -= 15 * Time.deltaTime;
                 prevDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
             }
@@ -41,7 +38,5 @@ public class cameraZoom : MonoBehaviour {
                 prevDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
             }
             transform.position = new Vector3(xAverage, yAverage, -10);
-        //}
-	
 	}
 }
