@@ -34,11 +34,11 @@ public class GroundShift : MonoBehaviour {
 
         if (leftCount > playerCount / 2)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime * smooth);
+             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime * smooth);
         }
         if (rightCount > playerCount / 2)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -90), Time.deltaTime * smooth);
+             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -90), Time.deltaTime * smooth);
         }
 	}
 }
