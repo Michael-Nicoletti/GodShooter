@@ -110,6 +110,8 @@ public class playerMovement : MonoBehaviour {
                 animController.SetBool("isJumping", true);
                 rb.AddForce(transform.up * jumpSpeed * 100);
             }
+            else
+                animController.SetBool("isJumping", false);
         }
         
 	}
