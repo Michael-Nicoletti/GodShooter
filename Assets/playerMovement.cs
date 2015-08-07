@@ -2,13 +2,22 @@
 using System.Collections;
 
 public class playerMovement : MonoBehaviour {
+    
+    //Player 1 or 2 settings
+    public int player = 1;
+    
+    //Movement speed setters
+    [SerializeField] int moveSpeed = 20;
+    [SerializeField] int maxXVelocity = 100;
+    [SerializeField] float jumpSpeed;
 
-    [SerializeField] int speed;
-
+    //Player input values
     private float playerInput;
     private Rigidbody2D rb;
-
-	// Use this for initialization
+    private bool canJump = true;
+	
+    
+    // Use this for initialization
 	void Start () {
 
         rb = GetComponent<Rigidbody2D>();
@@ -18,11 +27,46 @@ public class playerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        playerInput = Input.GetAxisRaw("Horizontal");
+        if(player == 1)
+        {
+            playerInput = Input.GetAxisRaw("Horizontal");
 
-        rb.AddForce(Vector2.right * speed * playerInput);
+            if(rb.velocity.x < maxXVelocity)
+            {
+                rb.AddForce(Vector2.right * moveSpeed * playerInput);
+            }
+           
 
+            if (Input.GetKeyDown(KeyCode.W) && canJump == true)
+            {
+                canJump = false;
+                rb.AddForce(Vector2.up * jumpSpeed * 100);
+            }
+        }
 
-	
+        if(player == 2)
+        {
+            playerInput = Input.GetAxisRaw("Horizontal2");
+
+            if (rb.velocity.x < maxXVelocity)
+            {
+                rb.AddForce(Vector2.right * moveSpeed * playerInput);
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) && canJump == true)
+            {
+                canJump = false;
+                rb.AddForce(Vector2.up * jumpSpeed * 100);
+            }
+        }
+        
 	}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag != "Wall")
+        {
+            canJump = true;
+        }
+    }
 }
