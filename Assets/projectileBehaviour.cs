@@ -27,13 +27,16 @@ public class projectileBehaviour : MonoBehaviour {
         {
             if (col.name == "player 2" || col.name == "player 2(clone)")
             {
-                Debug.Log(col.gameObject.name + " Lost A Life");
+                if (col.gameObject.GetComponent<Invulrability>().invulrable == false)
+                {
+                    Debug.Log(col.gameObject.name + " Lost A Life");
 
-                animController.SetBool("hit", true);
+                    animController.SetBool("hit", true);
 
-                col.gameObject.GetComponent<playerMovement>().subtractHp();
+                    col.gameObject.GetComponent<playerMovement>().subtractHp();
 
-                col.gameObject.GetComponent<Invulrability>().invulrable = true;
+                    col.gameObject.GetComponent<Invulrability>().invulrable = true;
+                }
 
                 Destroy(gameObject);
             }
@@ -43,13 +46,16 @@ public class projectileBehaviour : MonoBehaviour {
         {
             if (col.name == "player 1" || col.name == "player 1(clone)")
             {
-                Debug.Log(col.gameObject.name + " Lost A Life");
+                if (col.gameObject.GetComponent<Invulrability>().invulrable == false)
+                {
+                    Debug.Log(col.gameObject.name + " Lost A Life");
 
-                animController.SetBool("hit", true);
+                    animController.SetBool("hit", true);
 
-                col.gameObject.GetComponent<playerMovement>().subtractHp();
+                    col.gameObject.GetComponent<playerMovement>().subtractHp();
 
-                col.gameObject.GetComponent<Invulrability>().invulrable = true;
+                    col.gameObject.GetComponent<Invulrability>().invulrable = true;
+                }
 
                 Destroy(gameObject);
             }
