@@ -40,7 +40,7 @@ public class playerMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.W) && canJump == true)
             {
                 canJump = false;
-                rb.AddForce(Vector2.up * jumpSpeed * 100);
+                rb.AddForce(transform.up * jumpSpeed * 100);
             }
         }
 
@@ -56,7 +56,7 @@ public class playerMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.UpArrow) && canJump == true)
             {
                 canJump = false;
-                rb.AddForce(Vector2.up * jumpSpeed * 100);
+                rb.AddForce(transform.up * jumpSpeed * 100);
             }
         }
         
