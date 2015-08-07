@@ -7,6 +7,11 @@ public class projectileBehaviour : MonoBehaviour {
     [SerializeField] int player;
     [SerializeField] int bulletSpeed = 10;
 
+    [SerializeField] Animator animController;
+
+    //[SerializeField]
+    //[SerializeField] Sprite plutoHpPanel;
+
 	// Use this for initialization
     void Start()
     {
@@ -21,24 +26,36 @@ public class projectileBehaviour : MonoBehaviour {
     {
         if(player == 1)
         {
-            if (col.name == "player 2")
+            if (col.name == "player 2" || col.name == "player 2(clone)")
             {
                 Debug.Log(col.gameObject.name + " Lost A Life");
+
+                animController.SetBool("hit", true);
+
+                col.gameObject.GetComponent<playerMovement>().subtractHp();
+
                 Destroy(gameObject);
             }
         }
 
         if (player == 2)
         {
-            if (col.name == "player 1")
+            if (col.name == "player 1" || col.name == "player 1(clone)")
             {
                 Debug.Log(col.gameObject.name + " Lost A Life");
+
+                animController.SetBool("hit", true);
+
+                col.gameObject.GetComponent<playerMovement>().subtractHp();
+
                 Destroy(gameObject);
             }
         }
 
         if(col.tag == "Wall")
         {
+            animController.SetBool("hit", true);
+
             Destroy(gameObject);
         }
         
