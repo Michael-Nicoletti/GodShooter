@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour {
     [SerializeField] int maxXVelocity = 100;
     [SerializeField] float jumpSpeed;
 
-    [SerializeField] Animator animPluto;
+    [SerializeField] Animator animController;
 
     //[SerializeField] Animation animMars;
 
@@ -41,36 +41,64 @@ public class playerMovement : MonoBehaviour {
             playerInput = Input.GetAxisRaw("Horizontal");
 
             //ANIMATION STUFF
-            if(playerInput > 0 || playerInput < 0)
+            if(playerInput > 0)
             {
                 Debug.Log("DO THE THING");
-                gameObject.transform.localScale = new Vector3(transform.localScale.x * playerInput, 1, 1);
-                animPluto.SetBool("isWalking", true);
+                gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                animController.SetBool("isWalking", true);
+            }
+            else if(playerInput < 0)
+            {
+                Debug.Log("DO THE THING");
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                animController.SetBool("isWalking", true);
             }
             else
             {
-                animPluto.SetBool("isWalking", false);
+                animController.SetBool("isWalking", false);
             }
-               
             //ANIMATION STUFF END
 
             if(rb.velocity.x < maxXVelocity)
             {
 
                 rb.AddForce(Vector2.right * moveSpeed * playerInput);
-            }           
+            }
 
             if (Input.GetKeyDown(KeyCode.W) && canJump == true)
             {
-                canJump = false;
+                animController.SetBool("isJumping", true); 
                 rb.AddForce(transform.up * jumpSpeed * 100);
+                canJump = false;
             }
+            else
+                animController.SetBool("isJumping", false);
         }
 
         if(player == 2)
         {
             playerInput = Input.GetAxisRaw("Horizontal2");
 
+            //ANIMATION STUFF
+            if (playerInput > 0)
+            {
+                Debug.Log("DO THE THING");
+                gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                animController.SetBool("isWalking", true);
+            }
+            else if (playerInput < 0)
+            {
+                Debug.Log("DO THE THING");
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                animController.SetBool("isWalking", true);
+            }
+            else
+            {
+                animController.SetBool("isWalking", false);
+            }
+            //ANIMATION STUFF END
+
+            
             if (rb.velocity.x < maxXVelocity)
             {
                 rb.AddForce(Vector2.right * moveSpeed * playerInput);
@@ -79,6 +107,7 @@ public class playerMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.UpArrow) && canJump == true)
             {
                 canJump = false;
+                animController.SetBool("isJumping", true);
                 rb.AddForce(transform.up * jumpSpeed * 100);
             }
         }
