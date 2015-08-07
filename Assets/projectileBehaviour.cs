@@ -19,7 +19,6 @@ public class projectileBehaviour : MonoBehaviour {
 
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletSpeed * 100);
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -34,6 +33,8 @@ public class projectileBehaviour : MonoBehaviour {
 
                 col.gameObject.GetComponent<playerMovement>().subtractHp();
 
+                col.gameObject.GetComponent<Invulrability>().invulrable = true;
+
                 Destroy(gameObject);
             }
         }
@@ -47,6 +48,8 @@ public class projectileBehaviour : MonoBehaviour {
                 animController.SetBool("hit", true);
 
                 col.gameObject.GetComponent<playerMovement>().subtractHp();
+
+                col.gameObject.GetComponent<Invulrability>().invulrable = true;
 
                 Destroy(gameObject);
             }
