@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour {
     [SerializeField] int maxXVelocity = 100;
     [SerializeField] float jumpSpeed;
 
-    [SerializeField] Animator animPluto;
+    [SerializeField] Animator animController;
 
     //[SerializeField] Animation animMars;
 
@@ -45,17 +45,17 @@ public class playerMovement : MonoBehaviour {
             {
                 Debug.Log("DO THE THING");
                 gameObject.transform.localScale = new Vector3(-1, 1, 1);
-                animPluto.SetBool("isWalking", true);
+                animController.SetBool("isWalking", true);
             }
             else if(playerInput < 0)
             {
                 Debug.Log("DO THE THING");
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
-                animPluto.SetBool("isWalking", true);
+                animController.SetBool("isWalking", true);
             }
             else
             {
-                animPluto.SetBool("isWalking", false);
+                animController.SetBool("isWalking", false);
             }
             //ANIMATION STUFF END
 
@@ -67,18 +67,17 @@ public class playerMovement : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.W) && canJump == true)
             {
-                canJump = false;
-                animPluto.SetBool("isJumping", true);
+                animController.SetBool("isJumping", true); 
                 rb.AddForce(transform.up * jumpSpeed * 100);
+                canJump = false;
             }
             else
-                animPluto.SetBool("isJumping", false);
+                animController.SetBool("isJumping", false);
         }
 
         if(player == 2)
         {
             playerInput = Input.GetAxisRaw("Horizontal2");
-
             if (rb.velocity.x < maxXVelocity)
             {
                 rb.AddForce(Vector2.right * moveSpeed * playerInput);
