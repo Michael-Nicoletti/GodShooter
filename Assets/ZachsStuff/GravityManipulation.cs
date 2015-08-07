@@ -23,8 +23,8 @@ public class GravityManipulation : MonoBehaviour {
             {
                 Physics2D.gravity += new Vector2(0, gravityChange);
 
-                Debug.Log("Gravity Manipulated");
-                Debug.Log(gravityChange);
+                //Debug.Log("Gravity Manipulated");
+                //Debug.Log(gravityChange);
             }
         }
     }
