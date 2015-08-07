@@ -29,16 +29,20 @@ public class GroundShift : MonoBehaviour {
                 leftCount++;
             }
         }
-        Debug.Log("Left = " + leftCount);
-        Debug.Log("Right = " + rightCount);
+        //Debug.Log("Left = " + leftCount);
+        //Debug.Log("Right = " + rightCount);
 
         if (leftCount > playerCount / 2)
         {
-             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime * smooth);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(90, Vector3.forward), Time.deltaTime * smooth);
+
+            //transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
         }
         if (rightCount > playerCount / 2)
         {
-             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -90), Time.deltaTime * smooth);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(-90, Vector3.forward), Time.deltaTime * smooth);
+
+            //transform.rotation = Quaternion.AngleAxis(-90, Vector3.forward);
         }
 	}
 }

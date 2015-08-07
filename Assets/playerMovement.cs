@@ -22,15 +22,15 @@ public class playerMovement : MonoBehaviour {
     private bool canJump = true;
     private int playerHealth = 3;
     float movementAmount;
+    private Vector3 initialPosition;
 	
     
     // Use this for initialization
 	void Start () {
-
         rb = GetComponent<Rigidbody2D>();
+        initialPosition = transform.position;
 
         playerHealth = 3;
-	
 	}
 	
 	// Update is called once per frame
