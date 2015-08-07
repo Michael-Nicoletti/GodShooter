@@ -26,20 +26,24 @@ public class mouseControl : MonoBehaviour {
             if (hit.collider.name == "PlayButton")
             {
                 Debug.Log("PLAY BALL");
+                Application.LoadLevel(2);
             }
 
             if (hit.collider.name == "Controls")
             {
                 Debug.Log("DO THE CONTROLS");
+                Application.LoadLevel(1);
             }
 
             if (hit.collider.name == "Quit")
             {
                 Debug.Log("GTFO");
+                Application.Quit();
             }
             if(hit.collider.name == "returnToMenu")
             {
                 Debug.Log("GO BACK");
+                Application.LoadLevel(0);
             }
         }
     }
