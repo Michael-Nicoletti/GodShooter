@@ -11,16 +11,25 @@ public class playerMovement : MonoBehaviour {
     [SerializeField] int maxXVelocity = 100;
     [SerializeField] float jumpSpeed;
 
+    [SerializeField] Animator animPluto;
+
+    //[SerializeField] Animation animMars;
+
+
     //Player input values
     private float playerInput;
     private Rigidbody2D rb;
     private bool canJump = true;
+    private int playerHealth = 3;
+    float movementAmount;
 	
     
     // Use this for initialization
 	void Start () {
 
         rb = GetComponent<Rigidbody2D>();
+
+        playerHealth = 3;
 	
 	}
 	
@@ -31,11 +40,25 @@ public class playerMovement : MonoBehaviour {
         {
             playerInput = Input.GetAxisRaw("Horizontal");
 
+            //ANIMATION STUFF
+            if(playerInput > 0 || playerInput < 0)
+            {
+                Debug.Log("DO THE THING");
+                gameObject.transform.localScale = new Vector3(transform.localScale.x * playerInput, 1, 1);
+                animPluto.SetBool("isWalking", true);
+            }
+            else
+            {
+                animPluto.SetBool("isWalking", false);
+            }
+               
+            //ANIMATION STUFF END
+
             if(rb.velocity.x < maxXVelocity)
             {
+
                 rb.AddForce(Vector2.right * moveSpeed * playerInput);
-            }
-           
+            }           
 
             if (Input.GetKeyDown(KeyCode.W) && canJump == true)
             {
@@ -68,5 +91,15 @@ public class playerMovement : MonoBehaviour {
         {
             canJump = true;
         }
+    }
+
+    public int getHp()
+    {
+        return playerHealth;
+    }
+
+    public void subtractHp()
+    {
+        playerHealth--;
     }
 }
