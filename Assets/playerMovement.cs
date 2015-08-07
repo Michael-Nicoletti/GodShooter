@@ -41,30 +41,38 @@ public class playerMovement : MonoBehaviour {
             playerInput = Input.GetAxisRaw("Horizontal");
 
             //ANIMATION STUFF
-            if(playerInput > 0 || playerInput < 0)
+            if(playerInput > 0)
             {
                 Debug.Log("DO THE THING");
-                gameObject.transform.localScale = new Vector3(transform.localScale.x * playerInput, 1, 1);
+                gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                animPluto.SetBool("isWalking", true);
+            }
+            else if(playerInput < 0)
+            {
+                Debug.Log("DO THE THING");
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
                 animPluto.SetBool("isWalking", true);
             }
             else
             {
                 animPluto.SetBool("isWalking", false);
             }
-               
             //ANIMATION STUFF END
 
             if(rb.velocity.x < maxXVelocity)
             {
 
                 rb.AddForce(Vector2.right * moveSpeed * playerInput);
-            }           
+            }
 
             if (Input.GetKeyDown(KeyCode.W) && canJump == true)
             {
                 canJump = false;
+                animPluto.SetBool("isJumping", true);
                 rb.AddForce(transform.up * jumpSpeed * 100);
             }
+            else
+                animPluto.SetBool("isJumping", false);
         }
 
         if(player == 2)
