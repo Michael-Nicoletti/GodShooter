@@ -7,6 +7,8 @@ public class projectileBehaviour : MonoBehaviour {
     [SerializeField] int player;
     [SerializeField] int bulletSpeed = 10;
 
+    [SerializeField] Animator animController;
+
 	// Use this for initialization
     void Start()
     {
@@ -24,7 +26,10 @@ public class projectileBehaviour : MonoBehaviour {
             if (col.name == "player 2")
             {
                 Debug.Log(col.gameObject.name + " Lost A Life");
-                Destroy(gameObject);
+
+                animController.SetBool("hit", true);
+
+                Destroy(gameObject, 0.1f);
             }
         }
 
@@ -33,13 +38,18 @@ public class projectileBehaviour : MonoBehaviour {
             if (col.name == "player 1")
             {
                 Debug.Log(col.gameObject.name + " Lost A Life");
-                Destroy(gameObject);
+
+                animController.SetBool("hit", true);
+
+                Destroy(gameObject, 0.1f);
             }
         }
 
         if(col.tag == "Wall")
         {
-            Destroy(gameObject);
+            animController.SetBool("hit", true);
+
+            Destroy(gameObject, 0.1f);
         }
         
     }
