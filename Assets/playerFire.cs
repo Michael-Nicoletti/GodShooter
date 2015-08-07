@@ -14,6 +14,7 @@ public class playerFire : MonoBehaviour {
     public KeyCode leftFire = KeyCode.J;
     public KeyCode upFire = KeyCode.I;
     public KeyCode rightFire = KeyCode.L;
+    public KeyCode downFire = KeyCode.K;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,11 @@ public class playerFire : MonoBehaviour {
            if (Input.GetKeyDown(rightFire))
            {
                transform.rotation = Quaternion.Euler(0, 0, 0);
+               playerfire();
+           }
+           if (Input.GetKeyDown(downFire))
+           {
+               transform.rotation = Quaternion.Euler(0, 0, -90);
                playerfire();
            }
        }
