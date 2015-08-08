@@ -7,6 +7,7 @@ public class matchStatusText : MonoBehaviour {
     [SerializeField] Sprite matchStart;
     [SerializeField] Sprite pOneWin;
     [SerializeField] Sprite pTwoWin;
+    [SerializeField] Sprite empty;
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2;
 
@@ -17,7 +18,8 @@ public class matchStatusText : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        //image.sprite = null;
+        image = GetComponent<Image>();
+        //image.sprite = empty;
 	
 	}
 	
@@ -28,10 +30,11 @@ public class matchStatusText : MonoBehaviour {
 
         if(matchIsStarting == true)
         {
-            //image.sprite = matchStart;
+            image.sprite = matchStart;
             StartCoroutine(removeSprite());
-            //image.sprite = pTwoWin;
+            //image.sprite = empty;
             Debug.Log("Is this happening");
+            matchIsStarting = false;
             
         }
 
@@ -47,7 +50,8 @@ public class matchStatusText : MonoBehaviour {
 
     IEnumerator removeSprite()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
+        image.sprite = empty;
         Debug.Log("Is this running?");
     }
 }
