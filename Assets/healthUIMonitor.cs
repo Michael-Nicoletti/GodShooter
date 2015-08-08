@@ -8,6 +8,7 @@ public class healthUIMonitor : MonoBehaviour {
     [SerializeField] Sprite threeHits;
     [SerializeField] Sprite twoHits;
     [SerializeField] Sprite oneHit;
+    [SerializeField] Sprite empty;
 
     Image image;
 
@@ -32,6 +33,10 @@ public class healthUIMonitor : MonoBehaviour {
         if (player.GetComponent<playerMovement>().getHp() == 1)
         {
             image.sprite = oneHit;
+        }
+        if(player.GetComponent<playerMovement>().getHp() == 0)
+        {
+            image.sprite = empty;
         }
 	
 	}

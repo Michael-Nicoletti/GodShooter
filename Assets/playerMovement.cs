@@ -21,8 +21,8 @@ public class playerMovement : MonoBehaviour {
     private Rigidbody2D rb;
     private bool canJump = true;
     private int playerHealth = 3;
-    float movementAmount;
     private Vector3 initialPosition;
+    private int roundWins;
 	
     
     // Use this for initialization
@@ -132,5 +132,21 @@ public class playerMovement : MonoBehaviour {
     public void subtractHp()
     {
         playerHealth--;
+    }
+
+    public int getRoundWins()
+    {
+        return roundWins;
+    }
+
+    public void setRoundWins()
+    {
+        roundWins++;
+    }
+
+    public void resetPlayer()
+    {
+        transform.position = initialPosition;
+        playerHealth = 3;
     }
 }

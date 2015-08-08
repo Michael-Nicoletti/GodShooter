@@ -26,7 +26,7 @@ public class matchStatusText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //Debug.Log(Time.time);
+        Debug.Log(player1.GetComponent<playerMovement>().getRoundWins());
 
         if(matchIsStarting == true)
         {
@@ -41,10 +41,14 @@ public class matchStatusText : MonoBehaviour {
         if(player1.GetComponent<playerMovement>().getHp() == 0)
         {
             image.sprite = pTwoWin;
+            player2.GetComponent<playerMovement>().setRoundWins();
+            StartCoroutine(waitForRespawn());
         }
         else if(player2.GetComponent<playerMovement>().getHp() == 0)
         {
             image.sprite = pOneWin;
+            player1.GetComponent<playerMovement>().setRoundWins();
+            StartCoroutine(waitForRespawn());
         }
 	}
 
@@ -52,6 +56,16 @@ public class matchStatusText : MonoBehaviour {
     {
         yield return new WaitForSeconds(3);
         image.sprite = empty;
+    }
+
+    IEnumerator waitForRespawn()
+    {
+        yield return new WaitForSeconds(5);
+        matchIsStarting = true;
+        player1.gameObject.SetActive(true);
+        player2.gameObject.SetActive(true);
+        player1.GetComponent<playerMovement>().resetPlayer();
+        player2.GetComponent<playerMovement>().resetPlayer();
         Debug.Log("Is this running?");
     }
 }
